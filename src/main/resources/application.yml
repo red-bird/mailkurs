@@ -1,0 +1,31 @@
+upload:
+    path: ${UPLOAD_PATH:static}
+files:
+    dirPath: ${FILES_PATH:./files}
+timezone: Europe/Moscow
+spring:
+    application:
+        name: Mail
+    servlet:
+        multipart:
+            max-file-size: 20MB
+            max-request-size: 20MB
+            enabled: true
+    jpa:
+        hibernate:
+            ddl-auto: ${SCHEMA_INIT:validate}
+        generate-ddl: false
+        show-sql: false
+        open-in-view: false
+    datasource:
+        url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5433}/${DB_DB:mail}
+        username: ${DB_USER:postgres}
+        password: ${DB_PASS:postgres}
+
+jwt:
+    header: Authorization
+    expiration: ${JWT_EXP:86400}
+    secret: ${JWT_SECRET:secret}
+
+allowed:
+    origin: "*"
